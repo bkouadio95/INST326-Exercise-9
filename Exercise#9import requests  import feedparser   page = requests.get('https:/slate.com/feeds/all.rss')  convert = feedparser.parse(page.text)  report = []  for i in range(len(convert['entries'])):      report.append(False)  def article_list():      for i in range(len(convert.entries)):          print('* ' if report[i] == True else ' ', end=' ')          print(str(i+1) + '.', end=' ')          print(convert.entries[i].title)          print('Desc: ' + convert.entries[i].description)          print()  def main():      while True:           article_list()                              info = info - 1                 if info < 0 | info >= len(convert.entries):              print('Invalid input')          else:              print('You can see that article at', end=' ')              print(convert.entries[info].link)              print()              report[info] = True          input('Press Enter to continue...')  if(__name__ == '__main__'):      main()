@@ -1,0 +1,63 @@
+import requests
+
+import feedparser 
+
+page = requests.get('https://slate.com/feeds/all.rss')
+
+convert = feedparser.parse(page.text)
+
+report = []
+
+for i in range(len(convert['entries'])):
+
+    report.append(False)
+
+def article_list():
+
+    for i in range(len(convert.entries)):
+
+        print('* ' if report[i] == True else ' ', end=' ')
+
+        print(str(i+1) + '.', end=' ')
+
+        print(convert.entries[i].title)
+
+        print('Desc: ' + convert.entries[i].description)
+
+        print()
+
+def main():
+
+    while True:
+
+
+        article_list()
+
+       
+
+
+        
+
+        info = info - 1
+
+     
+
+        if info < 0 | info >= len(convert.entries):
+
+            print('Invalid input')
+
+        else:
+
+            print('You can see that article at', end=' ')
+
+            print(convert.entries[info].link)
+
+            print()
+
+            report[info] = True
+
+        input('Press Enter to continue...')
+
+if(__name__ == '__main__'):
+
+    main()
